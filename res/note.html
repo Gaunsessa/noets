@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>noets</title>
+</head>
+<body>
+   <p class="loc" onclick="navigator.clipboard.writeText(this.innerText);">##NOTEBURL##</p>
+   <p class="loc" onclick="navigator.clipboard.writeText(this.innerText);">##NOTEWURL##</p>
+   <p class="loc" onclick="navigator.clipboard.writeText(this.innerText);">##NOTERURL##</p>
+   <textarea id="text" readonly>##NOTETEXT##</textarea>
+
+   <style>
+      * {
+         border: 0;
+         padding: 0;
+         margin: 0;
+
+         font-family: monospace;
+         font-size: 1.15em;
+      }
+
+      body {
+         display: flex;
+
+         height: 100vh;
+
+         flex-direction: column;
+      }
+
+      #text {
+         width: 100vw;
+
+         padding: 2em;
+
+         resize: none;
+         outline: none;
+
+         box-sizing: border-box;
+         overflow: scroll;
+
+         flex-grow: 1;
+      }
+
+      .loc {
+         display: inline-block;
+
+         text-decoration: underline;
+
+         padding: 2em;
+         padding-bottom: 0;
+
+         cursor: pointer;
+
+         transition: opacity 0.6s;
+         transition-timing-function: ease;
+      }
+
+      .loc:not(:first-of-type) {
+         padding-top: 0;
+      }
+
+      .loc:active {
+         transition: none;
+         opacity: 0.3;
+      }
+   </style>
+
+   <script defer>
+      document.querySelectorAll(".loc").forEach(elm => {
+         elm.innerText = `${window.location.host}/${elm.innerText}`;
+      });
+   </script>
+</body>
+</html>

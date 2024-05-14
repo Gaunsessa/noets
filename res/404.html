@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>noets</title>
+</head>
+<body>
+   <textarea id="text" readonly>404</textarea>
+
+   <style>
+      * {
+         border: 0;
+         padding: 0;
+         margin: 0;
+
+         font-family: monospace;
+         font-size: 1.15em;
+      }
+
+      #text {
+         width: 100vw;
+         height: 100vh;
+
+         padding: 2em;
+
+         resize: none;
+         outline: none;
+
+         box-sizing: border-box;
+         overflow: scroll;
+      }
+
+      #save {
+         position: absolute;
+
+         bottom: 0;
+         right: 0;
+
+         padding: 2em;
+
+         cursor: pointer;
+
+         user-select: none;
+      }
+   </style>
+
+   <script defer>
+      const text_elm = document.querySelector("#text");
+
+      setInterval(() => {
+         text_elm.value = `${text_elm.value.slice(0, -1)}04`;
+      }, 200);
+   </script>
+</body>
+</html>

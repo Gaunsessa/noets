@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>noets</title>
+</head>
+<body>
+   <textarea id="text"></textarea>
+   <p id="save" onclick="post()">SAVE</p>
+
+   <style>
+      * {
+         border: 0;
+         padding: 0;
+         margin: 0;
+
+         font-family: monospace;
+         font-size: 1.15em;
+      }
+
+      #text {
+         width: 100vw;
+         height: 100vh;
+
+         padding: 2em;
+
+         resize: none;
+         outline: none;
+
+         box-sizing: border-box;
+         overflow: scroll;
+      }
+
+      #save {
+         position: absolute;
+
+         bottom: 0;
+         right: 0;
+
+         padding: 2em;
+
+         cursor: pointer;
+
+         user-select: none;
+      }
+   </style>
+
+   <script defer>
+      const text_elm = document.querySelector("#text");
+
+      text_elm.focus();
+
+      async function post() {
+         const res = await fetch("/", {
+            method: "POST",
+            body: text_elm.value
+         });
+
+         if (res.status != 200) {
+            alert("ERROR");
+
+            return;
+         }
+
+         window.location = await res.text();
+      }
+   </script>
+</body>
+</html>
